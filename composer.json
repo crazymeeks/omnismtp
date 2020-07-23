@@ -1,0 +1,31 @@
+{
+    "name": "crazymeeks/omnismtp",
+    "description": "Common components for SMTP processing library",
+    "keywords": ["PHP SMTP", "PHP mail library"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeff Claud",
+            "email": "jeffclaud17@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "ixudra/curl": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "OmniSmtp\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OmniSmtp\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5.0",
+        "mockery/mockery": "1.3.x-dev"
+    }
+}
