@@ -26,6 +26,6 @@ $sendinblue->setSubject('The Mail Subject')
 
 The following drivers are available:  
 
-Driver | 3.x | Composer Package | Maintainer
+Driver | 3.x | Composer Package | Maintainer | Installation
 --- | --- | --- | ---
-[sendinblue](https://github.com/crazymeeks/omnismtp-sendinblue) | ✓ | omnismtp/sendinblue | [Jeff Claud](https://github.com/crazymeeks)
+[sendinblue](https://github.com/crazymeeks/omnismtp-sendinblue) | ✓ | omnismtp/sendinblue | [Jeff Claud](https://github.com/crazymeeks) | composer require omnismtp/sendinblue
