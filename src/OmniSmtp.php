@@ -34,6 +34,9 @@ class OmniSmtp
     public static function __callStatic($name, $arguments)
     {
         $factory = self::getFactory();
+        if (count($arguments) < 2) {
+            throw new \OmniSmtp\Exceptions\OmniMailException(__CLASS__ . "::create() method expected 2 parameters. Only " . count($arguments) . " given.");
+        }
         
         return call_user_func_array(array($factory, $name), $arguments);
     }

@@ -40,11 +40,9 @@ class OmniSmtpTest extends \OmniSmtp\Tests\TestCase
     public function testMailFactory()
     {
 
-        $sendinblue = OmniSmtp::create(\OmniMail\Tests\SendInBlueTest::class);
+        $sendinblue = OmniSmtp::create(\OmniSmtp\Tests\SendInBlueTest::class, 'test-api-key');
 
-        $response = $sendinblue->setApiKey('test-api-key')
-                   ->setAuthorizationHearerName('api-key')
-                   ->setSubject('The Mail Subject')
+        $response = $sendinblue->setSubject('The Mail Subject')
                    ->setFrom([
                         'name' => 'John Doe',
                         'email' => 'john.doe@example.com'
@@ -52,7 +50,7 @@ class OmniSmtpTest extends \OmniSmtp\Tests\TestCase
                    ->setRecipients([
                         [
                             'name' => 'Jane Doe',
-                            'email' => 'john.doe+1@example.com'
+                            'email' => 'jane.doe@example.com'
                         ]
                    ])
                    ->setContent('<p>Hello From OmniMail</p>')
@@ -66,6 +64,23 @@ class OmniSmtpTest extends \OmniSmtp\Tests\TestCase
 class SendInBlueTest extends \OmniSmtp\Common\AbstractProvider
 {
 
+
+    public function __construct(string $apikey)
+    {
+        $this->setApiKey($apikey);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getAuthorizationHeaderName()
+    {
+        return $this->getData(self::AUTHORIZATION_NAME) ? $this->getData(self::AUTHORIZATION_NAME) : 'api-key';
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function getSmtpEndpoint()
     {
         return 'https://api.sendinblue.com/v3/smtp/email';

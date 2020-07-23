@@ -25,9 +25,7 @@ abstract class AbstractProvider implements ProviderInterface
      */
     protected $data_key = null;
 
-    protected $container = [
-        self::AUTHORIZATION_NAME => 'Authorization'
-    ];
+    protected $container = [];
 
     public function getSmtpEndpoint()
     {
@@ -172,7 +170,7 @@ abstract class AbstractProvider implements ProviderInterface
         $curl = $curl ? $curl : new CurlService();
 
         $data = $this->formatDataBaseOnProvider();
-
+        
         $response = $curl->to($this->getSmtpEndpoint())
                          ->asJson()
                          ->withHeader($this->getAuthorizationHeaderName() . ': ' . $this->getApikey())
