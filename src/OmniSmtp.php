@@ -14,7 +14,7 @@
 
 namespace OmniSmtp;
 
-use OmniMail\Common\Factory\ProviderFactory;
+use OmniSmtp\Common\Factory\ProviderFactory;
 
 class OmniSmtp
 {
