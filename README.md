@@ -27,5 +27,5 @@ $sendinblue->setApiKey('test-api-key')
 The following drivers are available:
 
 Driver | 3.x | Composer Package | Maintainer
---- | --- | --- | --- | ---
+--- | --- | --- | --- | ---  
 [sendinblue](https://github.com/crazymeeks/omnismtp-sendinblue) | ✓ | omnismtp/sendinblue | [Jeff Claud](https://github.com/crazymeeks)
