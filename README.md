@@ -1,4 +1,6 @@
-# omnismtp
+# OmniSmtp
+
+**An SMTP processing library for PHP
 
 # Usage
 
