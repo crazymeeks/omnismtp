@@ -1,6 +1,6 @@
 <?php
 
-namespace OmniMail\Tests;
+namespace OmniSmtp\Tests;
 
 use OmniSmtp\OmniSmtp;
 use Ixudra\Curl\CurlService;
