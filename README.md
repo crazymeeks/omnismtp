@@ -7,7 +7,7 @@
 ```php
 <?php
 
-$sendinblue = OmniSmtp::create(\OmniSmtp\SendInBlue::class, 'test-api-key');
+$sendinblue = \OmniSmtp\OmniSmtp::create(\OmniSmtp\SendInBlue::class, 'test-api-key');
 
 $sendinblue->setSubject('The Mail Subject')
            ->setFrom('john.doe@example.com')
