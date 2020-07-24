@@ -18,8 +18,8 @@ $sendinblue->setSubject('The Mail Subject')
 ---
 ### Drivers
 All mail providers must implement `\OmniSmtp\Common\ProviderInterface`, and will usually extend `\OmniSmtp\Common\AbstractProvider` for basic functionality.  
----
 
+---
 The following drivers are available:  
 
 Driver | 3.x | Composer Package | Maintainer | Installation
