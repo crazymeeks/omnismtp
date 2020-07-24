@@ -32,4 +32,18 @@ The main method implemented by drivers are:
 - `getAuthorizationHeaderName()` - smtp provider authorization header name. Usually `Authorization`.  
 - `getSmtpEndpoint()` - web api endpoint of smtp providers.  
 
+Optional setter methods you may want to implement:  
+- `setFrom(string $email)` - Email of the sender.  
+- `setRecipients(...$recipients)` - List of recipients email.  
+- `setContent(string $html)` - Email html content.  
+
+Note: When implementing these setter methods in your own, you may call `setData($key, $value)` to set your data. Ex.  
+```php
+<?php
+public function setFrom(string $email)
+{
+     return $this->setData(self::FROM, $email);
+}
+```
+
 ---
