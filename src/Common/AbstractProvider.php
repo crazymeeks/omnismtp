@@ -15,6 +15,7 @@ use OmniSmtp\Exceptions\OmniMailException;
 abstract class AbstractProvider implements ProviderInterface
 {
 
+    
     /**
      * Data prefix key for specific mail provider.
      * 
@@ -26,6 +27,11 @@ abstract class AbstractProvider implements ProviderInterface
     protected $data_key = null;
 
     protected $container = [];
+
+    public function __construct(string $apikey)
+    {
+        $this->setApiKey($apikey);
+    }
 
     public function getSmtpEndpoint()
     {

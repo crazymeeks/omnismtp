@@ -56,12 +56,6 @@ class OmniSmtpTest extends \OmniSmtp\Tests\TestCase
 class SendInBlueTest extends \OmniSmtp\Common\AbstractProvider
 {
 
-
-    public function __construct(string $apikey)
-    {
-        $this->setApiKey($apikey);
-    }
-
     /**
      * @inheritDoc
      */
