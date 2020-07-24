@@ -38,11 +38,7 @@ abstract class AbstractProvider implements ProviderInterface
     }
 
     /**
-     * Set authorization header name
-     *
-     * @param string $bearer
-     * 
-     * @return $this
+     * @inheritDoc
      */
     public function setAuthorizationHearerName(string $bearer = 'Authorization')
     {
@@ -50,9 +46,7 @@ abstract class AbstractProvider implements ProviderInterface
     }
 
     /**
-     * Get authorization  header name
-     *
-     * @return string
+     * @inheritDoc
      */
     public function getAuthorizationHeaderName()
     {
@@ -60,11 +54,7 @@ abstract class AbstractProvider implements ProviderInterface
     }
 
     /**
-     * Set mail subject
-     *
-     * @param string $subject
-     * 
-     * @return $this
+     * @inheritDoc
      */
     public function setSubject(string $subject)
     {
@@ -72,9 +62,7 @@ abstract class AbstractProvider implements ProviderInterface
     }
 
     /**
-     * Get mail subject
-     *
-     * @return void
+     * @inheritDoc
      */
     public function getSubject()
     {
@@ -83,27 +71,23 @@ abstract class AbstractProvider implements ProviderInterface
 
 
     /**
-     * Set mail content. This is an html content
-     *
-     * @param string $html
-     * 
-     * @return $this
+     * @inheritDoc
      */
     public function setContent(string $html)
     {
         return $this->setData(self::BODY, $html);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getContent()
     {
         return $this->getData(self::BODY);
     }
 
     /**
-     * Set smtp sender
-     * 
-     * Needs to be override by smtp providers
-     * 
+     * @inheritDoc
      */
     public function setFrom(string $from)
     {
@@ -112,9 +96,7 @@ abstract class AbstractProvider implements ProviderInterface
 
 
     /**
-     * Get sender
-     *
-     * @return mixed
+     * @inheritDoc
      */
     public function getFrom()
     {
@@ -122,11 +104,7 @@ abstract class AbstractProvider implements ProviderInterface
     }
 
     /**
-     * Set smtp recipients
-     * 
-     * @param array $recipients
-     * 
-     * @return $this
+     * @inheritDoc
      */
     public function setRecipients(...$recipients)
     {
@@ -134,9 +112,7 @@ abstract class AbstractProvider implements ProviderInterface
     }
 
     /**
-     * Get recipients
-     *
-     * @return array
+     * @inheritDoc
      */
     public function getRecipients()
     {
