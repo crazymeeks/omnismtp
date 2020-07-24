@@ -43,17 +43,9 @@ class OmniSmtpTest extends \OmniSmtp\Tests\TestCase
         $sendinblue = OmniSmtp::create(\OmniSmtp\Tests\SendInBlueTest::class, 'test-api-key');
 
         $response = $sendinblue->setSubject('The Mail Subject')
-                   ->setFrom([
-                        'name' => 'John Doe',
-                        'email' => 'john.doe@example.com'
-                   ])
-                   ->setRecipients([
-                        [
-                            'name' => 'Jane Doe',
-                            'email' => 'jane.doe@example.com'
-                        ]
-                   ])
-                   ->setContent('<p>Hello From OmniMail</p>')
+                   ->setFrom('john.doe@example.com')
+                   ->setRecipients('jane.doe@example.com')
+                   ->setContent('<p>Hello From OmniSmtp</p>')
                    ->send($this->_curl);
         
         $this->assertTrue($response);
@@ -89,17 +81,26 @@ class SendInBlueTest extends \OmniSmtp\Common\AbstractProvider
     /**
      * @inheritDoc
      */
-    public function setFrom(array $from)
+    public function setFrom(string $from)
     {
-        return $this->setData(self::FROM, ['sender' => $from]);
+        return $this->setData(self::FROM, ['sender' => ['email' => $from]]);
     }
 
     /**
      * @inheritDoc
      */
-    public function setRecipients(array $recipients)
+    public function setRecipients(...$recipients)
     {
-        return $this->setData(self::RECIPIENTS, ['to' => $recipients]);
+        $emails = [];
+        foreach($recipients as $recipient){
+            $emails[] = [
+                'email' => $recipient
+            ];
+
+            unset($recipient);
+        }
+
+        return $this->setData(self::RECIPIENTS, ['to' => $emails]);
     }
 
     /**

@@ -105,7 +105,7 @@ abstract class AbstractProvider implements ProviderInterface
      * Needs to be override by smtp providers
      * 
      */
-    public function setFrom(array $from)
+    public function setFrom(string $from)
     {
         return $this->setData(self::FROM, $from);
     }
@@ -128,7 +128,7 @@ abstract class AbstractProvider implements ProviderInterface
      * 
      * @return $this
      */
-    public function setRecipients(array $recipients)
+    public function setRecipients(...$recipients)
     {
         return $this->setData(self::RECIPIENTS, $recipients);
     }
@@ -186,13 +186,18 @@ abstract class AbstractProvider implements ProviderInterface
         return true;
     }
 
+    /**
+     * Format data
+     *
+     * @return array
+     */
     protected function formatDataBaseOnProvider()
     {
         $from = $this->getFrom();
         $recipients = $this->getRecipients();
         $content = $this->getContent();
         $subject = ['subject' => $this->getSubject()];
-
+        
         $data = array_merge($from, $recipients, $subject, $content);
 
         if ($this->data_key) {
