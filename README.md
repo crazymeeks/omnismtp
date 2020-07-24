@@ -24,4 +24,12 @@ The following drivers are available:
 
 Driver | 3.x | Composer Package | Maintainer | Installation
 --- | --- | --- | --- | ---
-[sendinblue](https://github.com/crazymeeks/omnismtp-sendinblue) | ✓ | omnismtp/sendinblue | [Jeff Claud](https://github.com/crazymeeks) | `composer require omnismtp/sendinblue`
+[sendinblue](https://github.com/crazymeeks/omnismtp-sendinblue) | ✓ | omnismtp/sendinblue | [Jeff Claud](https://github.com/crazymeeks) | `composer require omnismtp/sendinblue`  
+
+---  
+### Driver method  
+The main method implemented by drivers are:  
+- `getAuthorizationHeaderName()` - smtp provider authorization header name. Usually `Authorization`.  
+- `getSmtpEndpoint()` - web api endpoint of smtp providers.  
+
+---
