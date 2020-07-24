@@ -10,18 +10,10 @@
 $sendinblue = OmniSmtp::create(\OmniSmtp\SendInBlue::class, 'test-api-key');
 
 $sendinblue->setSubject('The Mail Subject')
-           ->setFrom([
-                        'name' => 'John Doe',
-                        'email' => 'john.doe@example.com'
-           ])
-           ->setRecipients([
-                 [
-                     'name' => 'Jane Doe',
-                     'email' => 'jane.doe@example.com'
-                 ]
-            ])
-            ->setContent('<p>Hello From SendInBlue OmniMail</p>')
-            ->send();
+           ->setFrom('john.doe@example.com')
+           ->setRecipients('jane.doe@example.com', 'test@email.com')
+           ->setContent('<p>Hello From SendInBlue OmniSmtp</p>')
+           ->send();
 ```
 
 The following drivers are available:  
