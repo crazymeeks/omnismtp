@@ -1,17 +1,15 @@
 # OmniSmtp
 
-###### An SMTP processing library for PHP
+###### Framework agnostic SMTP processing library for PHP
 
 # Usage
 
 ```php
 <?php
 
-$sendinblue = OmniSmtp::create(\OmniSmtp\SendInBlue::class);
+$sendinblue = OmniSmtp::create(\OmniSmtp\SendInBlue::class, 'test-api-key');
 
-$sendinblue->setApiKey('test-api-key')
-           ->setAuthorizationHearerName('api-key')
-           ->setSubject('The Mail Subject')
+$sendinblue->setSubject('The Mail Subject')
            ->setFrom([
                         'name' => 'John Doe',
                         'email' => 'john.doe@example.com'
@@ -28,6 +26,6 @@ $sendinblue->setApiKey('test-api-key')
 
 The following drivers are available:  
 
-Driver | 3.x | Composer Package | Maintainer
---- | --- | --- | ---
-[sendinblue](https://github.com/crazymeeks/omnismtp-sendinblue) | ✓ | omnismtp/sendinblue | [Jeff Claud](https://github.com/crazymeeks)
+Driver | 3.x | Composer Package | Maintainer | Installation
+--- | --- | --- | --- | ---
+[sendinblue](https://github.com/crazymeeks/omnismtp-sendinblue) | ✓ | omnismtp/sendinblue | [Jeff Claud](https://github.com/crazymeeks) | composer require omnismtp/sendinblue
