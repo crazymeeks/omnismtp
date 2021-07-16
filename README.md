@@ -7,7 +7,7 @@
 ```php
 <?php
 
-$sendinblue = OmniSmtp::create(\OmniSmtp\SendInBlue::class, 'test-api-key');
+$sendinblue = \OmniSmtp\OmniSmtp::create(\OmniSmtp\SendInBlue::class, 'test-api-key');
 
 $sendinblue->setSubject('The Mail Subject')
            ->setFrom('john.doe@example.com')
@@ -25,7 +25,7 @@ The following drivers are available:
 Driver | 3.x | Composer Package | Maintainer | Installation
 --- | --- | --- | --- | ---
 [sendinblue](https://github.com/crazymeeks/omnismtp-sendinblue) | ✓ | omnismtp/sendinblue | [Jeff Claud](https://github.com/crazymeeks) | `composer require omnismtp/sendinblue`  
-
+[sendgrid](https://github.com/napoleon101392/omnismpt-sendgrind) | ✓ | napoleon/omnismtp-sendgrid | [Napoleon Cariño](https://github.com/napoleon101392) | `composer require napoleon/omnismtp-sendgrid`  
 ---  
 ### Driver method  
 The main method implemented by drivers are:  
