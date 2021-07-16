@@ -51,6 +51,20 @@ class OmniSmtpTest extends \OmniSmtp\Tests\TestCase
         $this->assertTrue($response);
 
     }
+
+    public function testMailWithTemplate()
+    {
+
+        $sendinblue = OmniSmtp::create(\OmniSmtp\Tests\SendInBlueTest::class, 'test-api-key');
+
+        $mail = $sendinblue->setSubject('The Mail Subject')
+                   ->setFrom('jeffclaud17@gmail.com')
+                   ->setRecipients('jefferson.claud@nuworks.ph')
+                   ->setTemplate(__DIR__ . DIRECTORY_SEPARATOR . 'views/template.php', ['name' => 'John']);
+
+        $this->assertSame('<h1>John</h1>', $mail->getContent()['htmlContent']);
+
+    }
 }
 
 class SendInBlueTest extends \OmniSmtp\Common\AbstractProvider

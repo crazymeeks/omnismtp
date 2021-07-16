@@ -12,7 +12,8 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "ixudra/curl": "dev-master"
+        "ixudra/curl": "dev-master",
+        "symfony/filesystem": "5.4.x-dev"
     },
     "autoload": {
         "psr-4": {

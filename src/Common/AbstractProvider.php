@@ -9,8 +9,10 @@
 namespace OmniSmtp\Common;
 
 use Ixudra\Curl\CurlService;
+use OmniSmtp\Util\TemplateHelper;
 use OmniSmtp\Common\ProviderInterface;
 use OmniSmtp\Exceptions\OmniMailException;
+
 
 abstract class AbstractProvider implements ProviderInterface
 {
@@ -28,9 +30,15 @@ abstract class AbstractProvider implements ProviderInterface
 
     protected $container = [];
 
-    public function __construct(string $apikey)
+    /**
+     * @var \OmniSmtp\Util\TemplateHelper
+     */
+    protected $templateHelper;
+
+    public function __construct(string $apikey, TemplateHelper $templateHelper = null)
     {
         $this->setApiKey($apikey);
+        $this->templateHelper = $templateHelper ?? new TemplateHelper();
     }
 
     public function getSmtpEndpoint()
@@ -143,6 +151,19 @@ abstract class AbstractProvider implements ProviderInterface
     }
 
     /**
+     * Set template
+     * 
+     * @param string $template_path  Absolute path to the template file
+     * @param \OmniSmtp\Common\TemplateVarInterface|array
+     *
+     * @return $this
+     */
+    public function setTemplate(string $template_path, $templateVar = null)
+    {
+        return $this->setContent($this->templateHelper->build($template_path, $templateVar));
+    }
+
+    /**
      * Send email
      *
      * @return true
@@ -178,6 +199,7 @@ abstract class AbstractProvider implements ProviderInterface
         $from = $this->getFrom();
         $recipients = $this->getRecipients();
         $content = $this->getContent();
+
         $subject = ['subject' => $this->getSubject()];
         
         $data = array_merge($from, $recipients, $subject, $content);
@@ -187,7 +209,7 @@ abstract class AbstractProvider implements ProviderInterface
                 $this->data_key => array_merge($from, $recipients, $subject, $content)
             ];
         }
-
+        
         return $data;
 
     }
