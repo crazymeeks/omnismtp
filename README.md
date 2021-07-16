@@ -2,7 +2,7 @@
 
 ###### Framework agnostic SMTP processing library for PHP
 
-# Usage
+### # Usage
 
 ```php
 <?php
@@ -15,6 +15,49 @@ $sendinblue->setSubject('The Mail Subject')
            ->setContent('<p>Hello From SendInBlue OmniSmtp</p>')
            ->send();
 ```  
+Alternatively, you may use `setTemplate()` method if you want to use your own template file.  
+This is great when you want to have a custom design using css on your  
+email template.
+```php
+<?php
+
+$sendinblue = \OmniSmtp\OmniSmtp::create(\OmniSmtp\SendInBlue::class, 'test-api-key');
+
+$sendinblue->setSubject('The Mail Subject')
+           ->setFrom('john.doe@example.com')
+           ->setRecipients('jane.doe@example.com', 'test@email.com')
+           ->setTemplate('/path/to/template.php', array('firstname' => 'John'))
+           ->send();
+```
+You may also create your own class and implement `\OmniSmtp\Common\TemplateVarInterface` and then  
+pass it as second parameter of `setTemplate()` method. The variable `tpl` will be available in your template  
+and you can use this to access public methods of your defined template class.
+```php
+
+namespace YourNameSpace;
+
+use OmniSmtp\Common\TemplateVarInterface;
+class Template implements TemplateVarInterface
+{
+     public function getFirstName()
+     {
+          return 'John';
+     }
+}
+
+$template = new Template();
+
+$sendinblue = \OmniSmtp\OmniSmtp::create(\OmniSmtp\SendInBlue::class, 'test-api-key');
+
+$sendinblue->setSubject('The Mail Subject')
+           ->setFrom('john.doe@example.com')
+           ->setRecipients('jane.doe@example.com', 'test@email.com')
+           ->setTemplate('/path/to/template.php', $template)
+           ->send();
+
+// Your template.php
+<h1><?php echo $tpl->getFirstName();?></h1>
+```
 ---
 ### Drivers
 All mail providers must implement `\OmniSmtp\Common\ProviderInterface`, and will usually extend `\OmniSmtp\Common\AbstractProvider` for basic functionality.  
